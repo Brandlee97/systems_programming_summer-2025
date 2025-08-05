@@ -24,7 +24,7 @@ Create a Rust program that analyzes a series of numbers. The program should:
    - Print whether it's even or odd using your `is_even` function
    - If the number is divisible by 3, print "Fizz" instead
    - If the number is divisible by 5, print "Buzz" instead
-   - If it's divisible by both 3 and 5, print "FizzBuzz"
+   - If it's divisible by both 3 and 5, print "FizzBuzz" 
 4. Use a while loop to find and print the sum of all numbers in the array.
 5. Use a loop to find and print the largest number in the array.
 

@@ -8,6 +8,17 @@ fn celsius_to_fahrenheit(c: f64) -> f64{
     f
 }
 
+//num analyzer functions
+is_even(n: i32) -> bool
+{
+    for num in n.iter()
+    {
+        if num % 3 == 0
+        {
+            
+        }
+    }
+}
 
 fn main() {
 
@@ -24,7 +35,10 @@ fn main() {
         println!("your degrees in Farenheit is {} that converts to {:.2} celcius.", Farenheit, Celcius);
         counter -= 1;
     }
-        
+    
+    //Num analyzer
+    let num_Array[78,46,13,122,8,95,74,75,89,90];
+
 
 }
 
