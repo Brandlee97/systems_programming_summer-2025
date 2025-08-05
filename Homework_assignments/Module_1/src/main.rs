@@ -9,7 +9,7 @@ fn celsius_to_fahrenheit(c: f64) -> f64 {
 }
 
 fn run_temperature_converter() {
-    println!("\n== Assignment 1: Temperature Converter ==");
+    
 
     let mut temp_f = 87.0; 
     let mut count = 0;
@@ -29,7 +29,7 @@ fn is_even(n: i32) -> bool {
 }
 
 fn run_number_analyzer() {
-    println!("\n== Assignment 2: Number Analyzer ==");
+    
 
     let nums = [4, 9, 5, 19, 13, 15, 1, 18, 23, 26];
 
@@ -92,7 +92,6 @@ fn check_guess(guess: i32, secret: i32) -> i32 {
 }
 
 fn run_guessing_game() {
-    println!("\n== Assignment 3: Guessing Game ==");
 
     let secret = 17;
     let mut guess = 10;
