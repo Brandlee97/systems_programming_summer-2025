@@ -1,0 +1,1 @@
+O:\Repos\systems_programming_summer-2025\Homework_assignments\stock-data-fetcher\target\debug\stock-data-fetcher.exe: O:\Repos\systems_programming_summer-2025\Homework_assignments\stock-data-fetcher\src\main.rs

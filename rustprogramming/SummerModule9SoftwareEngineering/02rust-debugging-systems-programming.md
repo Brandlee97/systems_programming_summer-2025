@@ -1,4 +1,4 @@
-# Rust Debugging for Systems Programming
+0000000000000000000000000# Rust Debugging for Systems Programming
 
 Debugging is a critical skill in systems programming, where we often deal with low-level operations, memory management, and complex interactions with the operating system. This guide will demonstrate how to use debugging techniques in Rust, with a focus on systems programming concepts.
 
