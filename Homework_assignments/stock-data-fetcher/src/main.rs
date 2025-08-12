@@ -5,13 +5,11 @@ use std::io::Write;
 use std::thread;
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
-// Trait that defines how to fetch and save asset prices
 trait Pricing {
-    fn fetch_price(&mut self) -> Result<f64, Box<dyn Error>>; // fetch latest price
-    fn current_price(&self) -> f64; // return last stored price
-    fn symbol(&self) -> &'static str; // short asset symbol
+    fn fetch_price(&mut self) -> Result<f64, Box<dyn Error>>;
+    fn current_price(&self) -> f64;
+    fn symbol(&self) -> &'static str;
 
-    // Save timestamp and price to a file
     fn save_to_file(&self, path: &str) -> Result<(), Box<dyn Error>> {
         let ts = SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs();
         let mut f = OpenOptions::new().create(true).append(true).open(path)?;
@@ -20,23 +18,47 @@ trait Pricing {
     }
 }
 
-// JSON structs for parsing API responses
 #[derive(Debug, Deserialize)]
 struct CoinPrice {
     usd: f64,
 }
-
 #[derive(Debug, Deserialize)]
 struct BitcoinResp {
     bitcoin: CoinPrice,
 }
-
 #[derive(Debug, Deserialize)]
 struct EthereumResp {
     ethereum: CoinPrice,
 }
 
-// Asset structs to hold last fetched price
+#[derive(Debug, Deserialize)]
+struct YahooChart {
+    chart: YahooChartInner,
+}
+#[derive(Debug, Deserialize)]
+struct YahooChartInner {
+    result: Vec<YahooResult>,
+}
+#[derive(Debug, Deserialize)]
+struct YahooResult {
+    meta: YahooMeta,
+    #[serde(default)]
+    indicators: Option<YahooIndicators>,
+}
+#[derive(Debug, Deserialize)]
+struct YahooMeta {
+    #[serde(rename = "regularMarketPrice")]
+    regular_market_price: Option<f64>,
+}
+#[derive(Debug, Deserialize)]
+struct YahooIndicators {
+    quote: Vec<YahooQuote>,
+}
+#[derive(Debug, Deserialize)]
+struct YahooQuote {
+    close: Option<Vec<Option<f64>>>,
+}
+
 #[derive(Debug)]
 struct Bitcoin {
     price: f64,
@@ -50,7 +72,6 @@ struct SPy500 {
     price: f64,
 }
 
-// Constructors for each asset
 impl Bitcoin {
     fn new() -> Self {
         Self { price: 0.0 }
@@ -67,7 +88,6 @@ impl SPy500 {
     }
 }
 
-// Bitcoin API implementation
 impl Pricing for Bitcoin {
     fn fetch_price(&mut self) -> Result<f64, Box<dyn Error>> {
         let url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
@@ -75,17 +95,14 @@ impl Pricing for Bitcoin {
         self.price = resp.bitcoin.usd;
         Ok(self.price)
     }
-
     fn current_price(&self) -> f64 {
         self.price
     }
-
     fn symbol(&self) -> &'static str {
         "BTC"
     }
 }
 
-// Ethereum API implementation
 impl Pricing for Ethereum {
     fn fetch_price(&mut self) -> Result<f64, Box<dyn Error>> {
         let url = "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd";
@@ -93,54 +110,54 @@ impl Pricing for Ethereum {
         self.price = resp.ethereum.usd;
         Ok(self.price)
     }
-
     fn current_price(&self) -> f64 {
         self.price
     }
-
     fn symbol(&self) -> &'static str {
         "ETH"
     }
 }
 
-// S&P 500 API implementation using SPY CSV from Stooq
 impl Pricing for SPy500 {
     fn fetch_price(&mut self) -> Result<f64, Box<dyn Error>> {
-        let url = "https://stooq.com/q/l/?s=spy&i=d";
-        let body = ureq::get(url).call()?.into_string()?;
+        let url = "https://query2.finance.yahoo.com/v8/finance/chart/%5EGSPC?range=1d&interval=1m";
+        let resp: YahooChart = ureq::get(url)
+            .set("User-Agent", "financial-data-fetcher/1.0")
+            .call()?
+            .into_json()?;
 
-        // Skip header line and find first data line
-        let line = body
-            .lines()
-            .skip(1)
-            .find(|l| !l.trim().is_empty())
-            .ok_or("SPY CSV: no data line")?;
+        let result = resp.chart.result.get(0).ok_or("No result")?;
 
-        // CSV format: symbol,date,time,open,high,low,close,volume
-        let cols: Vec<&str> = line.split(',').collect();
-        if cols.len() < 7 {
-            return Err("SPY CSV: unexpected format".into());
+        if let Some(p) = result.meta.regular_market_price {
+            self.price = p;
+            return Ok(self.price);
         }
 
-        let close: f64 = cols[6].parse()?;
-        self.price = close;
-        Ok(self.price)
-    }
+        let last_close = result
+            .indicators
+            .as_ref()
+            .and_then(|inds| inds.quote.get(0))
+            .and_then(|q| q.close.as_ref())
+            .and_then(|closes| closes.iter().rev().flatten().copied().next());
 
+        if let Some(p) = last_close {
+            self.price = p;
+            Ok(self.price)
+        } else {
+            Err("No price found".into())
+        }
+    }
     fn current_price(&self) -> f64 {
         self.price
     }
-
     fn symbol(&self) -> &'static str {
         "SP500"
     }
 }
 
-// Main loop
 fn main() -> Result<(), Box<dyn Error>> {
     println!("Starting Financial Data Fetcher. Press Ctrl+C to stop.");
 
-    // Vector of different assets implementing Pricing trait
     let mut assets: Vec<Box<dyn Pricing>> = vec![
         Box::new(Bitcoin::new()),
         Box::new(Ethereum::new()),
@@ -148,7 +165,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     ];
 
     loop {
-        // Fetch and save prices for each asset
         for asset in assets.iter_mut() {
             match asset.fetch_price() {
                 Ok(p) => {
@@ -158,18 +174,14 @@ fn main() -> Result<(), Box<dyn Error>> {
                         _ => "sp500.csv",
                     };
                     if let Err(e) = asset.save_to_file(file) {
-                        eprintln!("Failed to save {} to {}: {}", asset.symbol(), file, e);
+                        eprintln!("Save error {}: {}", asset.symbol(), e);
                     } else {
-                        println!("{}: ${:.2}  -> appended to {}", asset.symbol(), p, file);
+                        println!("{}: ${:.2} -> {}", asset.symbol(), p, file);
                     }
                 }
-                Err(e) => {
-                    eprintln!("Failed to fetch {}: {}", asset.symbol(), e);
-                }
+                Err(e) => eprintln!("Fetch error {}: {}", asset.symbol(), e),
             }
         }
-
-        // Wait 10 seconds before fetching again
         thread::sleep(Duration::from_secs(10));
     }
 }
