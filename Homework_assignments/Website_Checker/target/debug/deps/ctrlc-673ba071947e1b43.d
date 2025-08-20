@@ -1,0 +1,11 @@
+O:\Repos\systems_programming_summer-2025\Homework_assignments\Website_Checker\target\debug\deps\ctrlc-673ba071947e1b43.d: C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\lib.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\error.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\platform\mod.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\platform\windows\mod.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\signal.rs
+
+O:\Repos\systems_programming_summer-2025\Homework_assignments\Website_Checker\target\debug\deps\libctrlc-673ba071947e1b43.rlib: C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\lib.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\error.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\platform\mod.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\platform\windows\mod.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\signal.rs
+
+O:\Repos\systems_programming_summer-2025\Homework_assignments\Website_Checker\target\debug\deps\libctrlc-673ba071947e1b43.rmeta: C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\lib.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\error.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\platform\mod.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\platform\windows\mod.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\signal.rs
+
+C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\lib.rs:
+C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\error.rs:
+C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\platform\mod.rs:
+C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\platform\windows\mod.rs:
+C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ctrlc-3.4.7\src\signal.rs:
