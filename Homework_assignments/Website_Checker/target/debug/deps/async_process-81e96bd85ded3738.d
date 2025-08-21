@@ -1,0 +1,10 @@
+O:\Repos\systems_programming_summer-2025\Homework_assignments\Website_Checker\target\debug\deps\async_process-81e96bd85ded3738.d: C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\lib.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\windows.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\reaper\mod.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\reaper\wait.rs
+
+O:\Repos\systems_programming_summer-2025\Homework_assignments\Website_Checker\target\debug\deps\libasync_process-81e96bd85ded3738.rlib: C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\lib.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\windows.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\reaper\mod.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\reaper\wait.rs
+
+O:\Repos\systems_programming_summer-2025\Homework_assignments\Website_Checker\target\debug\deps\libasync_process-81e96bd85ded3738.rmeta: C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\lib.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\windows.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\reaper\mod.rs C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\reaper\wait.rs
+
+C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\lib.rs:
+C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\windows.rs:
+C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\reaper\mod.rs:
+C:\Users\brand\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\async-process-2.4.0\src\reaper\wait.rs:

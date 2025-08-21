@@ -1,0 +1,1 @@
+O:\Repos\systems_programming_summer-2025\Homework_assignments\Website_Checker\target\release\libwebsite_checker.rlib: O:\Repos\systems_programming_summer-2025\Homework_assignments\Website_Checker\src\lib.rs
